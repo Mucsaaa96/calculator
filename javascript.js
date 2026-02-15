@@ -6,3 +6,9 @@ buttons.forEach(button => {
         console.log(event.target.textContent);
     })
 })
+
+function add(a,b) {
+    return a + b;
+}
+
+console.log(add(5,9));
