@@ -6,6 +6,7 @@ const symbols = [];
 function handleInput(value) {
     if(!isNaN(value)) {
         actualNumber += value;
+        console.log("actual number", actualNumber)
     } else {
         if(actualNumber !== "") {
             symbols.push(actualNumber);
@@ -14,4 +15,8 @@ function handleInput(value) {
         symbols.push(value);
     }
 }
+
+calculatorBtns.forEach(calculatorBtn => {
+    calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
+})
 
