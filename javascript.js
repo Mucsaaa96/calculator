@@ -1,24 +1,5 @@
-const buttons = document.querySelectorAll("button");
+const calculatorBtns = document.querySelectorAll(".calculator");
 const display = document.querySelector("#display");
 
-buttons.forEach(button => {
-    button.addEventListener("click", (event) => {
-        console.log(event.target.textContent);
-    })
-})
+console.log(calculatorBtns);
 
-function add(a,b) {
-    return a + b;
-}
-
-function subtract(a,b) {
-    return a - b;
-}
-
-function multiply(a,b) {
-    return a * b;
-}
-
-function divide(a,b) {
-    return a / b;
-}
