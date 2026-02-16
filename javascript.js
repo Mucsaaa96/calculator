@@ -9,21 +9,27 @@ function handleInput(value) {
     if (!isNaN(value)) {
         actualNumber += value;
         console.log("Actual number:", actualNumber);
-    } 
-    else if (operators.includes(value)) {
+    } else if (operators.includes(value)) {
+            if (symbols.length === 0 && actualNumber === "" && value === "-") {
+                actualNumber = "-";
+                return; 
+            }
+
+            if (symbols.length === 0 && actualNumber === "") {
+                return; 
+            }
         
-        if (actualNumber !== "") {
-            symbols.push(actualNumber);
-            actualNumber = "";
-        }
-
-        const lastInArray = symbols[symbols.length - 1];
-
-        if (operators.includes(lastInArray)) {
-            symbols[symbols.length - 1] = value;
-        } else if (symbols.length > 0) {
-            symbols.push(value);
-        }
+            if (actualNumber !== "") {
+                symbols.push(actualNumber);
+                actualNumber = "";
+            }
+        
+            const lastInArray = symbols[symbols.length - 1];
+            if (operators.includes(lastInArray)) {
+                symbols[symbols.length - 1] = value;
+            } else {
+                symbols.push(value);
+            }
     }
     console.log("Symbols array:", symbols);
 }
