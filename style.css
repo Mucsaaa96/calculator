@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin:0;
+    
+}
+
+.container {
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 30vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#display {
+    width: 80%;
+    height: 40px;
+    font-size: 20px;
+    text-align: right;
+    padding: 10px;
+}
+
+.top {
+    display: flex;
+
+}
+
+button {
+    padding: 15px;
+    font-size: 18px;
+}
+
+.second {
+    display: flex;
+}
