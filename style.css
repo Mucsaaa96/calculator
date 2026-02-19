@@ -3,24 +3,26 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin:0;
-    
+    margin:0;   
 }
 
 .container {
-    padding: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    width: 30vh;
-    display: flex;
-    flex-direction: column;
+    background-color: rgb(47, 48, 48);
+}
+
+#buttons {
+    display: grid;
+    grid-template-columns: repeat(4,60px);
 }
 
 #display {
-    width: 80%;
     height: 40px;
     font-size: 20px;
     text-align: right;
     padding: 10px;
+    background-color: rgb(47, 48, 48);
+    color: rgb(252, 252, 252);
 }
 
 .top {
@@ -31,8 +33,21 @@ body {
 button {
     padding: 15px;
     font-size: 18px;
+    background-color: rgb(106, 131, 127);
+}
+
+.operator {
+    background-color: rgb(55, 143, 128);
 }
 
 .second {
     display: flex;
+}
+
+#equal {
+    background-color: rgb(71, 221, 78);
+}
+
+.delete {
+    background-color: rgb(12, 102, 49)
 }
