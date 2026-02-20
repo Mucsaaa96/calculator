@@ -42,14 +42,20 @@ calculatorBtns.forEach(calculatorBtn => {
 
 function calculate(array) {
     for(let i = 0; i < array.length; i++) {
-    if( array[i] === "x" || array[i] === "÷"){
-        const a = array[i - 1];
-        const b = array[i + 1];
-        const res = array[i] === "x" ? a * b : a / b;
-        array.splice(i - 1, 3, String(res))
-        i--;
+            if( array[i] === "x" || array[i] === "÷"){
+            const a = Number(array[i - 1]);
+            const b = Number(array[i + 1]);
+
+            if(array[i] === "÷" && b === 0) {
+                return "Error"
+            }
+
+            const res = array[i] === "x" ? a * b : a / b;
+            array.splice(i - 1, 3, String(res))
+            i--;
+        }
     }
-    } 
+
     let result = Number(array[0])
 
     for(let i = 1; i < array.length; i += 2) {
@@ -58,5 +64,8 @@ function calculate(array) {
         if(op === "+") result += num;
         else result -= num;
     }
-    return result;
+    return Math.round(result * 1000) / 1000;
 }
+
+let array = ["7", "÷", "3",]
+console.log(calculate(array));
