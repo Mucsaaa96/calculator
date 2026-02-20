@@ -9,6 +9,7 @@ body {
 .container {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     background-color: rgb(47, 48, 48);
+    width: 240px;
 }
 
 #buttons {
@@ -23,6 +24,8 @@ body {
     padding: 10px;
     background-color: rgb(47, 48, 48);
     color: rgb(252, 252, 252);
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .top {
