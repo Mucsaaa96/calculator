@@ -9,6 +9,7 @@ function handleInput(value) {
     if (!isNaN(value)) {
         actualNumber += value;
         console.log("Actual number:", actualNumber);
+        updateDisplay()
     } else if (operators.includes(value)) {
             if (symbols.length === 0 && actualNumber === "" && value === "-") {
                 actualNumber = "-";
@@ -33,12 +34,12 @@ function handleInput(value) {
             }
     }
     console.log("Symbols array:", symbols);
+    updateDisplay()
+}    
+
+function updateDisplay() {
+    display.textContent = symbols.join("") + actualNumber;
 }
-
-
-calculatorBtns.forEach(calculatorBtn => {
-    calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
-})
 
 function calculate(array) {
     for(let i = 0; i < array.length; i++) {
@@ -69,3 +70,7 @@ function calculate(array) {
 
 let array = ["7", "÷", "3",]
 console.log(calculate(array));
+
+calculatorBtns.forEach(calculatorBtn => {
+    calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
+})
