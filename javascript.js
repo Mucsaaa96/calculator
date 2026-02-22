@@ -1,7 +1,8 @@
 const calculatorBtns = document.querySelectorAll(".calculator");
 const display = document.querySelector("#display");
+const equal = document.querySelector("#equal");
 let actualNumber = "";
-const symbols = [];
+let symbols = [];
 
 function handleInput(value) {
     const operators = ["+", "-", "x", "÷"];
@@ -65,12 +66,23 @@ function calculate(array) {
         if(op === "+") result += num;
         else result -= num;
     }
-    return Math.round(result * 1000) / 1000;
+    const threeDecimalResult = Math.round(result * 1000) / 1000;
+    
+    display.textContent = threeDecimalResult;
+    actualNumber = threeDecimalResult;
 }
 
-let array = ["7", "÷", "3",]
-console.log(calculate(array));
+function operate() {
+    if(actualNumber !== "") {
+        symbols.push(actualNumber);
+        actualNumber = "";
+    }
+    calculate(symbols);
+    symbols = [];
+}
 
 calculatorBtns.forEach(calculatorBtn => {
     calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
 })
+
+equal.addEventListener("click", operate);
