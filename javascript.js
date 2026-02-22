@@ -67,15 +67,20 @@ function calculate(array) {
         else result -= num;
     }
     const threeDecimalResult = Math.round(result * 1000) / 1000;
-    
+
     display.textContent = threeDecimalResult;
     actualNumber = threeDecimalResult;
 }
 
 function operate() {
+    const operators = ["+", "-", "x", "÷"];
+    const lastInSymbols = symbols[symbols.length - 1];
+
     if(actualNumber !== "") {
         symbols.push(actualNumber);
         actualNumber = "";
+    } else if(operators.includes(lastInSymbols)) {
+        symbols.pop();
     }
     calculate(symbols);
     symbols = [];
