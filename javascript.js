@@ -126,4 +126,4 @@ refresh.addEventListener("click", clearDisplay);
 
 deleteBtn.addEventListener("click", deleteLastItem);
 
-window.addEventListener("keydown", handleKeyboardInput);
+document.addEventListener("keydown", handleKeyboardInput);
