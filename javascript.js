@@ -1,6 +1,8 @@
 const calculatorBtns = document.querySelectorAll(".calculator");
 const display = document.querySelector("#display");
 const equal = document.querySelector("#equal");
+const refresh = document.querySelector("#refresh");
+
 let actualNumber = "";
 let symbols = [];
 
@@ -86,8 +88,16 @@ function operate() {
     symbols = [];
 }
 
+function clearDisplay() {
+    actualNumber = "";
+    symbols = [];
+    display.textContent = "";
+}
+
 calculatorBtns.forEach(calculatorBtn => {
     calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
 })
 
 equal.addEventListener("click", operate);
+
+refresh.addEventListener("click", clearDisplay);
