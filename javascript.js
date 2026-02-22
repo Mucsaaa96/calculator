@@ -47,11 +47,12 @@ function updateDisplay() {
 
 function calculate(array) {
     for(let i = 0; i < array.length; i++) {
-            if( array[i] === "x" || array[i] === "÷"){
+            if( array[i] === "x" || array[i] === "÷" || array[i] === "/"){
             const a = Number(array[i - 1]);
             const b = Number(array[i + 1]);
 
-            if(array[i] === "÷" && b === 0) {
+            if(array[i] === "÷" && b === 0 ||
+                array[i] === "/" && b === 0) {
                 return "Error"
             }
 
@@ -76,7 +77,7 @@ function calculate(array) {
 }
 
 function operate() {
-    const operators = ["+", "-", "x", "÷"];
+    const operators = ["+", "-", "x", "÷", "/"];
     const lastInSymbols = symbols[symbols.length - 1];
 
     if(actualNumber !== "") {
@@ -97,12 +98,52 @@ function clearDisplay() {
 
 function deleteLastItem() {
     if(actualNumber !== ""){
-        symbols.push(actualNumber);
-        actualNumber ="";
+       symbols.push(actualNumber);
+       actualNumber = "";
     }
     symbols.pop();
     updateDisplay();
 }
+
+function handleKeyboardInput(event) {
+    const operators = ["+", "-", "x", "/"];
+    if(event.key >= "0" && event.key <= "9" ) {
+        actualNumber += event.key;
+        console.log(actualNumber);
+    } else if (operators.includes(event.key)) {
+             if (symbols.length === 0 && actualNumber === "" && event.key === "-") {
+               actualNumber = "-";
+               return; 
+            }
+
+            if (symbols.length === 0 && actualNumber === "") {
+                return; 
+            }
+    
+            if (actualNumber !== "") {
+                symbols.push(actualNumber);
+                actualNumber = "";
+            }
+    
+            const lastInArray = symbols[symbols.length - 1];
+
+            if (operators.includes(lastInArray)) {
+                symbols[symbols.length - 1] = event.key;
+            } else {
+                symbols.push(event.key);
+            }
+    }
+    console.log("Symbols array:", symbols);
+    updateDisplay();
+
+    if(event.key === "Enter") {
+        operate()
+    } else if(event.key === "Backspace") {
+        deleteLastItem()
+    }
+
+}    
+
 
 calculatorBtns.forEach(calculatorBtn => {
     calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
@@ -113,3 +154,5 @@ equal.addEventListener("click", operate);
 refresh.addEventListener("click", clearDisplay);
 
 deleteBtn.addEventListener("click", deleteLastItem);
+
+window.addEventListener("keydown", handleKeyboardInput);
