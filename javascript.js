@@ -2,6 +2,7 @@ const calculatorBtns = document.querySelectorAll(".calculator");
 const display = document.querySelector("#display");
 const equal = document.querySelector("#equal");
 const refresh = document.querySelector("#refresh");
+const deleteBtn = document.querySelector("#deleteBtn"); 
 
 let actualNumber = "";
 let symbols = [];
@@ -94,6 +95,15 @@ function clearDisplay() {
     display.textContent = "";
 }
 
+function deleteLastItem() {
+    if(actualNumber !== ""){
+        symbols.push(actualNumber);
+        actualNumber ="";
+    }
+    symbols.pop();
+    updateDisplay();
+}
+
 calculatorBtns.forEach(calculatorBtn => {
     calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
 })
@@ -101,3 +111,5 @@ calculatorBtns.forEach(calculatorBtn => {
 equal.addEventListener("click", operate);
 
 refresh.addEventListener("click", clearDisplay);
+
+deleteBtn.addEventListener("click", deleteLastItem);
