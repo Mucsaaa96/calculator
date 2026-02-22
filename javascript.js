@@ -8,7 +8,7 @@ let actualNumber = "";
 let symbols = [];
 
 function handleInput(value) {
-    const operators = ["+", "-", "x", "÷"];
+    const operators = ["+", "-", "x", "÷", "/"];
 
     if (!isNaN(value)) {
         actualNumber += value;
@@ -98,50 +98,21 @@ function clearDisplay() {
 
 function deleteLastItem() {
     if(actualNumber !== ""){
-       symbols.push(actualNumber);
-       actualNumber = "";
-    }
-    symbols.pop();
+       actualNumber = actualNumber.slice(0, -1);
+    } else {
+        symbols.pop();
+    }    
     updateDisplay();
 }
 
 function handleKeyboardInput(event) {
-    const operators = ["+", "-", "x", "/"];
-    if(event.key >= "0" && event.key <= "9" ) {
-        actualNumber += event.key;
-        console.log(actualNumber);
-    } else if (operators.includes(event.key)) {
-             if (symbols.length === 0 && actualNumber === "" && event.key === "-") {
-               actualNumber = "-";
-               return; 
-            }
-
-            if (symbols.length === 0 && actualNumber === "") {
-                return; 
-            }
-    
-            if (actualNumber !== "") {
-                symbols.push(actualNumber);
-                actualNumber = "";
-            }
-    
-            const lastInArray = symbols[symbols.length - 1];
-
-            if (operators.includes(lastInArray)) {
-                symbols[symbols.length - 1] = event.key;
-            } else {
-                symbols.push(event.key);
-            }
-    }
-    console.log("Symbols array:", symbols);
-    updateDisplay();
-
     if(event.key === "Enter") {
         operate()
     } else if(event.key === "Backspace") {
         deleteLastItem()
     }
 
+    handleInput(event.key)
 }    
 
 
