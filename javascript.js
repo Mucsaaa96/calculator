@@ -129,13 +129,13 @@ function handleKeyboardInput(event) {
 
 
 calculatorBtns.forEach(calculatorBtn => {
-    calculatorBtn.addEventListener("click", (event) => handleInput(event.target.textContent))
+    calculatorBtn.addEventListener("submit", (event) => handleInput(event.target.textContent))
 })
 
-equal.addEventListener("click", operate);
+equal.addEventListener("submit", operate);
 
-refresh.addEventListener("click", clearDisplay);
+refresh.addEventListener("submit", clearDisplay);
 
-deleteBtn.addEventListener("click", deleteLastItem);
+deleteBtn.addEventListener("submit", deleteLastItem);
 
 document.addEventListener("keydown", handleKeyboardInput);
