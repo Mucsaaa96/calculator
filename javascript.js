@@ -3,6 +3,7 @@ const display = document.querySelector("#display");
 const equal = document.querySelector("#equal");
 const refresh = document.querySelector("#refresh");
 const deleteBtn = document.querySelector("#deleteBtn"); 
+const dot = document.querySelector("#dot");
 
 let actualNumber = "";
 let symbols = [];
@@ -14,7 +15,16 @@ function handleInput(value) {
         actualNumber += value;
         console.log("Actual number:", actualNumber);
         updateDisplay()
-    } else if (operators.includes(value)) {
+    } else if(value === ".") {
+        if(actualNumber === "") {
+            actualNumber = "0."
+        } else if(actualNumber.includes(value)) {
+            return;
+        } else {
+            actualNumber += value;
+        }
+    }
+     else if (operators.includes(value)) {
             if (symbols.length === 0 && actualNumber === "" && value === "-") {
                 actualNumber = "-";
                 return; 
