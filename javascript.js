@@ -6,9 +6,9 @@ const deleteBtn = document.querySelector("#deleteBtn");
 
 let actualNumber = "";
 let symbols = [];
+const operators = ["+", "-", "x", "÷", "/"];
 
 function handleInput(value) {
-    const operators = ["+", "-", "x", "÷", "/"];
 
     if (!isNaN(value)) {
         actualNumber += value;
@@ -53,7 +53,10 @@ function calculate(array) {
 
             if(array[i] === "÷" && b === 0 ||
                 array[i] === "/" && b === 0) {
-                return "Error"
+                actualNumber = "";
+                symbols = [];
+                display.textContent = "Error";
+                return;
             }
 
             const res = array[i] === "x" ? a * b : a / b;
@@ -77,7 +80,6 @@ function calculate(array) {
 }
 
 function operate() {
-    const operators = ["+", "-", "x", "÷", "/"];
     const lastInSymbols = symbols[symbols.length - 1];
 
     if(actualNumber !== "") {
